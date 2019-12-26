@@ -19,9 +19,7 @@ class TestSquareTrinomial {
                 () -> assertEquals(-3, trinomial.getC()),
                 () -> assertArrayEquals(new double[]{8.5, 1, -3}, trinomial.getCoefficients(), EPS),
                 () -> assertThrows(IllegalArgumentException.class, () -> new SquareTrinomial(0, 1, 1)),
-                () -> assertThrows(IllegalArgumentException.class, () -> new SquareTrinomial(1, 0, 1)),
-                () -> assertThrows(IllegalArgumentException.class, () -> new SquareTrinomial(1, 1, 0)),
-                () -> assertThrows(IllegalArgumentException.class, () -> new SquareTrinomial(0, 0.0000009, 0))
+                () -> assertThrows(IllegalArgumentException.class, () -> new SquareTrinomial(0.0000009, 1, 1))
         );
     }
     
@@ -31,11 +29,15 @@ class TestSquareTrinomial {
         SquareTrinomial trinomial1 = new SquareTrinomial(1, 2, -8);
         SquareTrinomial trinomial2 = new SquareTrinomial(.25, -3.5, 12.25);
         SquareTrinomial trinomial3 = new SquareTrinomial(1, 1, 1);
+        SquareTrinomial trinomial4 = new SquareTrinomial(16, 0, -64);
+        SquareTrinomial trinomial5 = new SquareTrinomial(-0.2349, 0, 0);
         
         assertAll(
                 () -> assertArrayEquals(new double[]{-4, 2}, trinomial1.getRealRoots(), EPS),
                 () -> assertArrayEquals(new double[]{7}, trinomial2.getRealRoots(), EPS),
-                () -> assertArrayEquals(new double[]{}, trinomial3.getRealRoots(), EPS)
+                () -> assertArrayEquals(new double[]{}, trinomial3.getRealRoots(), EPS),
+                () -> assertArrayEquals(new double[]{-2, 2}, trinomial4.getRealRoots(), EPS),
+                () -> assertArrayEquals(new double[]{0}, trinomial5.getRealRoots(), EPS)
         );
     }
     
@@ -62,19 +64,19 @@ class TestSquareTrinomial {
     void testSquareTrinomialToString() {
         Locale.setDefault(Locale.ENGLISH);
         
-        SquareTrinomial trinomial1 = new SquareTrinomial(3, 3, 3);
-        SquareTrinomial trinomial2 = new SquareTrinomial(1, 2, 3);
+        SquareTrinomial trinomial1 = new SquareTrinomial(3, 4, 5);
+        SquareTrinomial trinomial2 = new SquareTrinomial(1, 2, 0);
         SquareTrinomial trinomial3 = new SquareTrinomial(2, 1, 3);
-        SquareTrinomial trinomial4 = new SquareTrinomial(2, 3, 1);
-        SquareTrinomial trinomial5 = new SquareTrinomial(-2, 3, -1);
+        SquareTrinomial trinomial4 = new SquareTrinomial(2, 0, 1);
+        SquareTrinomial trinomial5 = new SquareTrinomial(-1, 0, 0);
         SquareTrinomial trinomial6 = new SquareTrinomial(.2, -1.33, 7);
         
         assertAll(
-                () -> assertEquals("SquareTrinomial {3x^2 + 3x + 3}", trinomial1.toString()),
-                () -> assertEquals("SquareTrinomial {x^2 + 2x + 3}", trinomial2.toString()),
+                () -> assertEquals("SquareTrinomial {3x^2 + 4x + 5}", trinomial1.toString()),
+                () -> assertEquals("SquareTrinomial {x^2 + 2x}", trinomial2.toString()),
                 () -> assertEquals("SquareTrinomial {2x^2 + x + 3}", trinomial3.toString()),
-                () -> assertEquals("SquareTrinomial {2x^2 + 3x + 1}", trinomial4.toString()),
-                () -> assertEquals("SquareTrinomial {-2x^2 + 3x - 1}", trinomial5.toString()),
+                () -> assertEquals("SquareTrinomial {2x^2 + 1}", trinomial4.toString()),
+                () -> assertEquals("SquareTrinomial {-x^2}", trinomial5.toString()),
                 () -> assertEquals("SquareTrinomial {0.2x^2 - 1.33x + 7}", trinomial6.toString())
         );
     }

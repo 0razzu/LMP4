@@ -9,8 +9,8 @@ public class SquareTrinomial {
     
     
     public SquareTrinomial(double a, double b, double c) {
-        if ((Math.abs(a) < EPS) || (Math.abs(b) < EPS) || (Math.abs(c) < EPS))
-            throw new IllegalArgumentException("Square trinomial must have every coefficient different from 0");
+        if (Math.abs(a) < EPS)
+            throw new IllegalArgumentException("a must not be 0");
         
         this.a = a;
         this.b = b;
