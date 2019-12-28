@@ -89,7 +89,7 @@ public class TestLinearFunc {
         Locale.setDefault(Locale.ENGLISH);
         
         LinearFunc f1 = new LinearFunc(0, 0, -1, 1);
-        LinearFunc f2 = new LinearFunc(1, 0, -1, 1);
+        LinearFunc f2 = new LinearFunc(-1, 0, -1, 1);
         LinearFunc f3 = new LinearFunc(5, 0, -1, 1);
         LinearFunc f4 = new LinearFunc(0, 1, -2.8, Double.MAX_VALUE);
         LinearFunc f5 = new LinearFunc(0, -2, -1, 2);
@@ -97,7 +97,7 @@ public class TestLinearFunc {
         
         assertAll(
                 () -> assertEquals("LinearFunc {0, x ∈ [-1; 1]}", f1.toString()),
-                () -> assertEquals("LinearFunc {x, x ∈ [-1; 1]}", f2.toString()),
+                () -> assertEquals("LinearFunc {-x, x ∈ [-1; 1]}", f2.toString()),
                 () -> assertEquals("LinearFunc {5x, x ∈ [-1; 1]}", f3.toString()),
                 () -> assertEquals("LinearFunc {1, x ∈ [-2.8; +∞]}", f4.toString()),
                 () -> assertEquals("LinearFunc {-2, x ∈ [-1; 2]}", f5.toString()),
