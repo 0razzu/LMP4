@@ -1,3 +1,6 @@
+package ParameterizedClasses;
+
+
 public class FunctionException extends RuntimeException {
     private FunctionErrorCode errorCode;
     
@@ -9,5 +12,11 @@ public class FunctionException extends RuntimeException {
     
     public FunctionErrorCode getErrorCode() {
         return errorCode;
+    }
+    
+    
+    @Override
+    public String getMessage() {
+        return errorCode.getErrorString();
     }
 }

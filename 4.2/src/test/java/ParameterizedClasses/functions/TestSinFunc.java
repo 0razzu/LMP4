@@ -1,3 +1,9 @@
+package ParameterizedClasses.functions;
+
+
+import ParameterizedClasses.FunctionErrorCode;
+import ParameterizedClasses.FunctionException;
+import ParameterizedClasses.functions.SinFunc;
 import org.junit.jupiter.api.Test;
 
 import java.util.Locale;

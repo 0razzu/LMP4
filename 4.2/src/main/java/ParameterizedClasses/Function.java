@@ -1,3 +1,6 @@
+package ParameterizedClasses;
+
+
 public interface Function {
     double getLeft();
     double getRight();
