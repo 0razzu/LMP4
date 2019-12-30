@@ -1,9 +1,10 @@
-package ParameterizedClasses.functions;
+package parameterized_classes.functions;
 
 
-import ParameterizedClasses.FunctionErrorCode;
-import ParameterizedClasses.FunctionException;
+import parameterized_classes.FunctionErrorCode;
+import parameterized_classes.FunctionException;
 import org.junit.jupiter.api.Test;
+import parameterized_classes.functions.FracFunc;
 
 import java.util.Locale;
 

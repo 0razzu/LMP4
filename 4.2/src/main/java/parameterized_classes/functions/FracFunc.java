@@ -1,9 +1,9 @@
-package ParameterizedClasses.functions;
+package parameterized_classes.functions;
 
 
-import ParameterizedClasses.Function;
-import ParameterizedClasses.FunctionErrorCode;
-import ParameterizedClasses.FunctionException;
+import parameterized_classes.Function;
+import parameterized_classes.FunctionErrorCode;
+import parameterized_classes.FunctionException;
 
 import java.text.DecimalFormat;
 import java.util.Objects;

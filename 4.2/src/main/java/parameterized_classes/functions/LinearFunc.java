@@ -1,17 +1,15 @@
-package ParameterizedClasses.functions;
+package parameterized_classes.functions;
 
 
-import ParameterizedClasses.Function;
-import ParameterizedClasses.FunctionErrorCode;
-import ParameterizedClasses.FunctionException;
+import parameterized_classes.Function;
+import parameterized_classes.FunctionErrorCode;
+import parameterized_classes.FunctionException;
 
 import java.text.DecimalFormat;
 import java.util.Objects;
 
-import static java.lang.Math.sin;
 
-
-public class SinFunc implements Function {
+public class LinearFunc implements Function {
     private static final double EPS = 1E-9;
     private double a;
     private double b;
@@ -19,7 +17,7 @@ public class SinFunc implements Function {
     private double right;
     
     
-    public SinFunc(double a, double b, double left, double right) {
+    public LinearFunc(double a, double b, double left, double right) {
         if (left - right >= EPS)
             throw new FunctionException(FunctionErrorCode.INCORRECT_BOUNDS);
         
@@ -30,7 +28,7 @@ public class SinFunc implements Function {
     }
     
     
-    public SinFunc(double a, double b) {
+    public LinearFunc(double a, double b) {
         this(a, b, -Double.MAX_VALUE, Double.MAX_VALUE);
     }
     
@@ -62,25 +60,25 @@ public class SinFunc implements Function {
         if ((x - left <= -EPS) || (x - right >= EPS))
             throw new FunctionException(FunctionErrorCode.ARGUMENT_OUT_OF_DOMAIN);
         
-        return a * sin(b * x);
+        return a * x + b;
     }
     
     
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof SinFunc)) return false;
-        SinFunc that = (SinFunc) o;
+        if (!(o instanceof LinearFunc)) return false;
+        LinearFunc that = (LinearFunc) o;
         return Math.abs(that.left - left) < EPS &&
                 Math.abs(that.right - right) < EPS &&
                 Math.abs(that.a - a) < EPS &&
-                (Math.abs(a) < EPS || Math.abs(that.b - b) < EPS);
+                Math.abs(that.b - b) < EPS;
     }
     
     
     @Override
     public int hashCode() {
-        return Objects.hash(a, b, left, right);
+        return Objects.hash(left, right, a, b);
     }
     
     
@@ -96,30 +94,20 @@ public class SinFunc implements Function {
             else if (Math.abs(a + 1) <= EPS)
                 sb.append("-");
             
-            sb.append("sin(");
-            
-            if (Math.abs(b) >= EPS) {
-                if (Math.abs(Math.abs(b) - 1) >= EPS)
-                    sb.append(df.format(b));
-                
-                else if (Math.abs(b + 1) <= EPS)
-                    sb.append("-");
-                
-                sb.append("x");
-            }
-            
-            else
-                sb.append(0);
-            
-            sb.append(")");
+            sb.append("x");
         }
         
-        else
-            sb.append(0);
+        if (sb.length() == 0)
+            sb.append(df.format(b));
+        
+        else if (Math.abs(b) >= EPS) {
+            sb.append((b > 0)? " + " : " - ");
+            sb.append(df.format(Math.abs(b)));
+        }
         
         sb.append(String.format(", x ∈ [%s; %s]", (left == -Double.MAX_VALUE)? "-∞" : df.format(left),
                 (right == Double.MAX_VALUE)? "+∞" : df.format(right)));
         
-        return sb.insert(0, "SinFunc {").append("}").toString();
+        return sb.insert(0, "LinearFunc {").append("}").toString();
     }
 }

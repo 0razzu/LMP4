@@ -1,15 +1,17 @@
-package ParameterizedClasses.functions;
+package parameterized_classes.functions;
 
 
-import ParameterizedClasses.Function;
-import ParameterizedClasses.FunctionErrorCode;
-import ParameterizedClasses.FunctionException;
+import parameterized_classes.Function;
+import parameterized_classes.FunctionErrorCode;
+import parameterized_classes.FunctionException;
 
 import java.text.DecimalFormat;
 import java.util.Objects;
 
+import static java.lang.Math.exp;
 
-public class LinearFunc implements Function {
+
+public class ExpFunc implements Function {
     private static final double EPS = 1E-9;
     private double a;
     private double b;
@@ -17,7 +19,7 @@ public class LinearFunc implements Function {
     private double right;
     
     
-    public LinearFunc(double a, double b, double left, double right) {
+    public ExpFunc(double a, double b, double left, double right) {
         if (left - right >= EPS)
             throw new FunctionException(FunctionErrorCode.INCORRECT_BOUNDS);
         
@@ -28,7 +30,7 @@ public class LinearFunc implements Function {
     }
     
     
-    public LinearFunc(double a, double b) {
+    public ExpFunc(double a, double b) {
         this(a, b, -Double.MAX_VALUE, Double.MAX_VALUE);
     }
     
@@ -60,15 +62,15 @@ public class LinearFunc implements Function {
         if ((x - left <= -EPS) || (x - right >= EPS))
             throw new FunctionException(FunctionErrorCode.ARGUMENT_OUT_OF_DOMAIN);
         
-        return a * x + b;
+        return a * exp(x) + b;
     }
     
     
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof LinearFunc)) return false;
-        LinearFunc that = (LinearFunc) o;
+        if (!(o instanceof ExpFunc)) return false;
+        ExpFunc that = (ExpFunc) o;
         return Math.abs(that.left - left) < EPS &&
                 Math.abs(that.right - right) < EPS &&
                 Math.abs(that.a - a) < EPS &&
@@ -78,7 +80,7 @@ public class LinearFunc implements Function {
     
     @Override
     public int hashCode() {
-        return Objects.hash(left, right, a, b);
+        return Objects.hash(a, b, left, right);
     }
     
     
@@ -86,28 +88,33 @@ public class LinearFunc implements Function {
     public String toString() {
         DecimalFormat df = new DecimalFormat("0.#########");
         StringBuilder sb = new StringBuilder();
-        
+    
         if (Math.abs(a) >= EPS) {
             if (Math.abs(Math.abs(a) - 1) >= EPS)
                 sb.append(df.format(a));
-            
+        
             else if (Math.abs(a + 1) <= EPS)
                 sb.append("-");
-            
-            sb.append("x");
+        
+            sb.append("exp(x)");
         }
+    
+        if (Math.abs(b) >= EPS) {
+            if (b < EPS)
+                sb.append(" - ");
         
-        if (sb.length() == 0)
-            sb.append(df.format(b));
-        
-        else if (Math.abs(b) >= EPS) {
-            sb.append((b > 0)? " + " : " - ");
+            else if (sb.length() != 0)
+                sb.append(" + ");
+    
             sb.append(df.format(Math.abs(b)));
         }
-        
+    
+        if (sb.length() == 0)
+            sb.append(0);
+    
         sb.append(String.format(", x ∈ [%s; %s]", (left == -Double.MAX_VALUE)? "-∞" : df.format(left),
                 (right == Double.MAX_VALUE)? "+∞" : df.format(right)));
-        
-        return sb.insert(0, "LinearFunc {").append("}").toString();
+    
+        return sb.insert(0, "ExpFunc {").append("}").toString();
     }
 }

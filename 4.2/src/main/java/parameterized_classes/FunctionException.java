@@ -1,4 +1,4 @@
-package ParameterizedClasses;
+package parameterized_classes;
 
 
 public class FunctionException extends RuntimeException {

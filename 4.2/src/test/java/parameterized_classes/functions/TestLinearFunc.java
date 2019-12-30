@@ -1,9 +1,9 @@
-package ParameterizedClasses.functions;
+package parameterized_classes.functions;
 
 
-import ParameterizedClasses.FunctionErrorCode;
-import ParameterizedClasses.FunctionException;
-import ParameterizedClasses.functions.LinearFunc;
+import parameterized_classes.FunctionErrorCode;
+import parameterized_classes.FunctionException;
+import parameterized_classes.functions.LinearFunc;
 import org.junit.jupiter.api.Test;
 
 import java.util.Locale;
