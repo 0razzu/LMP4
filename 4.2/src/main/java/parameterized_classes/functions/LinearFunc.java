@@ -8,6 +8,8 @@ import parameterized_classes.FunctionException;
 import java.text.DecimalFormat;
 import java.util.Objects;
 
+import static java.lang.Math.abs;
+
 
 public class LinearFunc implements Function {
     private static final double EPS = 1E-9;
@@ -69,10 +71,10 @@ public class LinearFunc implements Function {
         if (this == o) return true;
         if (!(o instanceof LinearFunc)) return false;
         LinearFunc that = (LinearFunc) o;
-        return Math.abs(that.left - left) < EPS &&
-                Math.abs(that.right - right) < EPS &&
-                Math.abs(that.a - a) < EPS &&
-                Math.abs(that.b - b) < EPS;
+        return abs(that.left - left) < EPS &&
+                abs(that.right - right) < EPS &&
+                abs(that.a - a) < EPS &&
+                abs(that.b - b) < EPS;
     }
     
     
@@ -87,11 +89,11 @@ public class LinearFunc implements Function {
         DecimalFormat df = new DecimalFormat("0.#########");
         StringBuilder sb = new StringBuilder();
         
-        if (Math.abs(a) >= EPS) {
-            if (Math.abs(Math.abs(a) - 1) >= EPS)
+        if (abs(a) >= EPS) {
+            if (abs(abs(a) - 1) >= EPS)
                 sb.append(df.format(a));
             
-            else if (Math.abs(a + 1) <= EPS)
+            else if (abs(a + 1) <= EPS)
                 sb.append("-");
             
             sb.append("x");
@@ -100,9 +102,9 @@ public class LinearFunc implements Function {
         if (sb.length() == 0)
             sb.append(df.format(b));
         
-        else if (Math.abs(b) >= EPS) {
+        else if (abs(b) >= EPS) {
             sb.append((b > 0)? " + " : " - ");
-            sb.append(df.format(Math.abs(b)));
+            sb.append(df.format(abs(b)));
         }
         
         sb.append(String.format(", x ∈ [%s; %s]", (left == -Double.MAX_VALUE)? "-∞" : df.format(left),

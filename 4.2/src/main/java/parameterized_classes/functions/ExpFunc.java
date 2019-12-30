@@ -8,6 +8,7 @@ import parameterized_classes.FunctionException;
 import java.text.DecimalFormat;
 import java.util.Objects;
 
+import static java.lang.Math.abs;
 import static java.lang.Math.exp;
 
 
@@ -71,10 +72,10 @@ public class ExpFunc implements Function {
         if (this == o) return true;
         if (!(o instanceof ExpFunc)) return false;
         ExpFunc that = (ExpFunc) o;
-        return Math.abs(that.left - left) < EPS &&
-                Math.abs(that.right - right) < EPS &&
-                Math.abs(that.a - a) < EPS &&
-                Math.abs(that.b - b) < EPS;
+        return abs(that.left - left) < EPS &&
+                abs(that.right - right) < EPS &&
+                abs(that.a - a) < EPS &&
+                abs(that.b - b) < EPS;
     }
     
     
@@ -88,33 +89,38 @@ public class ExpFunc implements Function {
     public String toString() {
         DecimalFormat df = new DecimalFormat("0.#########");
         StringBuilder sb = new StringBuilder();
-    
-        if (Math.abs(a) >= EPS) {
-            if (Math.abs(Math.abs(a) - 1) >= EPS)
+        
+        if (abs(a) >= EPS) {
+            if (abs(abs(a) - 1) >= EPS)
                 sb.append(df.format(a));
-        
-            else if (Math.abs(a + 1) <= EPS)
+            
+            else if (abs(a + 1) <= EPS)
                 sb.append("-");
-        
+            
             sb.append("exp(x)");
         }
-    
-        if (Math.abs(b) >= EPS) {
-            if (b < EPS)
-                sb.append(" - ");
         
-            else if (sb.length() != 0)
-                sb.append(" + ");
-    
-            sb.append(df.format(Math.abs(b)));
+        if (abs(b) >= EPS) {
+            if (sb.length() == 0)
+                sb.append(df.format(b));
+            
+            else {
+                if (b < EPS)
+                    sb.append(" - ");
+                
+                else
+                    sb.append(" + ");
+                
+                sb.append(df.format(abs(b)));
+            }
         }
-    
+        
         if (sb.length() == 0)
             sb.append(0);
-    
+        
         sb.append(String.format(", x ∈ [%s; %s]", (left == -Double.MAX_VALUE)? "-∞" : df.format(left),
                 (right == Double.MAX_VALUE)? "+∞" : df.format(right)));
-    
+        
         return sb.insert(0, "ExpFunc {").append("}").toString();
     }
 }

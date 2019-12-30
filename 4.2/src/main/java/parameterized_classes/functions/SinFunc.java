@@ -8,6 +8,7 @@ import parameterized_classes.FunctionException;
 import java.text.DecimalFormat;
 import java.util.Objects;
 
+import static java.lang.Math.abs;
 import static java.lang.Math.sin;
 
 
@@ -71,10 +72,10 @@ public class SinFunc implements Function {
         if (this == o) return true;
         if (!(o instanceof SinFunc)) return false;
         SinFunc that = (SinFunc) o;
-        return Math.abs(that.left - left) < EPS &&
-                Math.abs(that.right - right) < EPS &&
-                Math.abs(that.a - a) < EPS &&
-                (Math.abs(a) < EPS || Math.abs(that.b - b) < EPS);
+        return abs(that.left - left) < EPS &&
+                abs(that.right - right) < EPS &&
+                abs(that.a - a) < EPS &&
+                (abs(a) < EPS || abs(that.b - b) < EPS);
     }
     
     
@@ -89,20 +90,20 @@ public class SinFunc implements Function {
         DecimalFormat df = new DecimalFormat("0.#########");
         StringBuilder sb = new StringBuilder();
         
-        if (Math.abs(a) >= EPS) {
-            if (Math.abs(Math.abs(a) - 1) >= EPS)
+        if (abs(a) >= EPS) {
+            if (abs(abs(a) - 1) >= EPS)
                 sb.append(df.format(a));
             
-            else if (Math.abs(a + 1) <= EPS)
+            else if (abs(a + 1) <= EPS)
                 sb.append("-");
             
             sb.append("sin(");
             
-            if (Math.abs(b) >= EPS) {
-                if (Math.abs(Math.abs(b) - 1) >= EPS)
+            if (abs(b) >= EPS) {
+                if (abs(abs(b) - 1) >= EPS)
                     sb.append(df.format(b));
                 
-                else if (Math.abs(b + 1) <= EPS)
+                else if (abs(b + 1) <= EPS)
                     sb.append("-");
                 
                 sb.append("x");
