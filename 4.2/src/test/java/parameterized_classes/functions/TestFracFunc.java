@@ -87,6 +87,7 @@ public class TestFracFunc {
         FracFunc f7 = new FracFunc(1, 1, -1, 1, -100, 100);
     
         assertAll(
+                () -> assertEquals(f1, f1),
                 () -> assertEquals(f1, f2),
                 () -> assertNotEquals(f1, f3),
                 () -> assertNotEquals(f1, f4),

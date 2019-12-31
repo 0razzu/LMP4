@@ -79,6 +79,7 @@ public class TestLinearFunc {
         LinearFunc f7 = new LinearFunc(1, 3, -1, 1);
         
         assertAll(
+                () -> assertEquals(f1, f1),
                 () -> assertEquals(f1, f2),
                 () -> assertNotEquals(f1, f3),
                 () -> assertNotEquals(f1, f4),

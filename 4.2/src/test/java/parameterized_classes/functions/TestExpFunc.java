@@ -1,26 +1,24 @@
 package parameterized_classes.functions;
 
 
+import org.junit.jupiter.api.Test;
 import parameterized_classes.FunctionErrorCode;
 import parameterized_classes.FunctionException;
-import parameterized_classes.functions.SinFunc;
-import org.junit.jupiter.api.Test;
 
 import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-public class TestSinFunc {
+public class TestExpFunc {
     private static final double EPS = 1E-9;
     
     
     @Test
     void testSinFunc() {
-        SinFunc f1 = new SinFunc(5, -2, -10, 10);
-        SinFunc f2 = new SinFunc(1, 2);
-    
+        ExpFunc f1 = new ExpFunc(5, -2, -10, 10);
+        ExpFunc f2 = new ExpFunc(1, 2);
+        
         assertAll(
                 () -> assertEquals(5, f1.getA()),
                 () -> assertEquals(-2, f1.getB()),
@@ -31,9 +29,9 @@ public class TestSinFunc {
                 () -> assertEquals(-Double.MAX_VALUE, f2.getLeft()),
                 () -> assertEquals(Double.MAX_VALUE, f2.getRight())
         );
-    
+        
         try {
-            SinFunc f3 = new SinFunc(1, 1, 1, -1);
+            ExpFunc f3 = new ExpFunc(1, 1, 1, -1);
             fail();
         } catch (FunctionException e) {
             assertEquals(FunctionErrorCode.INCORRECT_BOUNDS, e.getErrorCode());
@@ -43,14 +41,14 @@ public class TestSinFunc {
     
     @Test
     void testSinFuncGetValue() {
-        SinFunc f1 = new SinFunc(1.5, -4.5, -20, 10);
-        SinFunc f2 = new SinFunc(-1, 0.5);
+        ExpFunc f1 = new ExpFunc(1.5, -4.5, -20, 10);
+        ExpFunc f2 = new ExpFunc(-1, 0.5);
         
         assertAll(
-                () -> assertEquals(1.5, f1.getValue(Math.PI/3), EPS),
-                () -> assertEquals(0, f1.getValue(2*Math.PI/9), EPS),
-                () -> assertEquals(-1, f2.getValue(Math.PI), EPS),
-                () -> assertEquals(0, f2.getValue(320*Math.PI), EPS)
+                () -> assertEquals(-3, f1.getValue(0), EPS),
+                () -> assertEquals(33035.1986922101, f1.getValue(10), EPS),
+                () -> assertEquals(-0.5, f2.getValue(0), EPS),
+                () -> assertEquals(0.5, f2.getValue(-333), EPS)
         );
         
         try {
@@ -70,14 +68,14 @@ public class TestSinFunc {
     
     
     @Test
-    void testSinFuncEquals() {
-        SinFunc f1 = new SinFunc(1, 1, -1, 1);
-        SinFunc f2 = new SinFunc(1, 1, -1, 1);
-        SinFunc f3 = new SinFunc(1, 1, -2, 1);
-        SinFunc f4 = new SinFunc(1, 1, -1, 2);
-        SinFunc f5 = new SinFunc(1, 1);
-        SinFunc f6 = new SinFunc(3, 1, -1, 1);
-        SinFunc f7 = new SinFunc(1, 3, -1, 1);
+    void testExpFuncEquals() {
+        ExpFunc f1 = new ExpFunc(1, 2, -2, 2);
+        ExpFunc f2 = new ExpFunc(1, 2, -2, 2);
+        ExpFunc f3 = new ExpFunc(0, 2, -2, 2);
+        ExpFunc f4 = new ExpFunc(1, 1, -2, 2);
+        ExpFunc f5 = new ExpFunc(1, 2, -1, 2);
+        ExpFunc f6 = new ExpFunc(1, 2, -2, 1);
+        ExpFunc f7 = new ExpFunc(1, 2);
         
         assertAll(
                 () -> assertEquals(f1, f1),
@@ -93,25 +91,23 @@ public class TestSinFunc {
     
     
     @Test
-    void testLinearFuncToString() {
+    void testExpFuncToString() {
         Locale.setDefault(Locale.ENGLISH);
-    
-        SinFunc f1 = new SinFunc(0, 0, -1, 1);
-        SinFunc f2 = new SinFunc(-1, 0, -1, 1);
-        SinFunc f3 = new SinFunc(5, 0, -1, 1);
-        SinFunc f4 = new SinFunc(0, 1, -2.8, Double.MAX_VALUE);
-        SinFunc f5 = new SinFunc(0, -2, -1, 2);
-        SinFunc f6 = new SinFunc(1, 2);
-        SinFunc f7 = new SinFunc(-0.215, -1);
         
+        ExpFunc f1 = new ExpFunc(1, 2, -35, 10);
+        ExpFunc f2 = new ExpFunc(-1, -1);
+        ExpFunc f3 = new ExpFunc(-2, 1);
+        ExpFunc f4 = new ExpFunc(0, 123.9, 0, Double.MAX_VALUE);
+        ExpFunc f5 = new ExpFunc(0, -5);
+        ExpFunc f6 = new ExpFunc(0, 0);
+    
         assertAll(
-                () -> assertEquals("SinFunc {0, x ∈ [-1; 1]}", f1.toString()),
-                () -> assertEquals("SinFunc {-sin(0), x ∈ [-1; 1]}", f2.toString()),
-                () -> assertEquals("SinFunc {5sin(0), x ∈ [-1; 1]}", f3.toString()),
-                () -> assertEquals("SinFunc {0, x ∈ [-2.8; +∞]}", f4.toString()),
-                () -> assertEquals("SinFunc {0, x ∈ [-1; 2]}", f5.toString()),
-                () -> assertEquals("SinFunc {sin(2x), x ∈ [-∞; +∞]}", f6.toString()),
-                () -> assertEquals("SinFunc {-0.215sin(-x), x ∈ [-∞; +∞]}", f7.toString())
+                () -> assertEquals("ExpFunc {exp(x) + 2, x ∈ [-35; 10]}", f1.toString()),
+                () -> assertEquals("ExpFunc {-exp(x) - 1, x ∈ [-∞; +∞]}", f2.toString()),
+                () -> assertEquals("ExpFunc {-2exp(x) + 1, x ∈ [-∞; +∞]}", f3.toString()),
+                () -> assertEquals("ExpFunc {123.9, x ∈ [0; +∞]}", f4.toString()),
+                () -> assertEquals("ExpFunc {-5, x ∈ [-∞; +∞]}", f5.toString()),
+                () -> assertEquals("ExpFunc {0, x ∈ [-∞; +∞]}", f6.toString())
         );
     }
 }
