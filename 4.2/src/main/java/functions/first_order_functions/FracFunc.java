@@ -1,9 +1,8 @@
-package parameterized_classes.functions;
+package functions.first_order_functions;
 
 
-import parameterized_classes.Function;
-import parameterized_classes.FunctionErrorCode;
-import parameterized_classes.FunctionException;
+import functions.FunctionsErrorCode;
+import functions.FunctionsException;
 
 import java.text.DecimalFormat;
 import java.util.Objects;
@@ -23,10 +22,10 @@ public class FracFunc implements Function {
     
     public FracFunc(double a, double b, double c, double d, double left, double right) {
         if (left - right >= EPS)
-            throw new FunctionException(FunctionErrorCode.INCORRECT_BOUNDS);
+            throw new FunctionsException(FunctionsErrorCode.INCORRECT_BOUNDS);
         
         if ((abs(c) < EPS) && (abs(d) < EPS))
-            throw new FunctionException(FunctionErrorCode.NULL_DENOMINATOR);
+            throw new FunctionsException(FunctionsErrorCode.NULL_DENOMINATOR);
         
         this.a = a;
         this.b = b;
@@ -77,7 +76,7 @@ public class FracFunc implements Function {
     @Override
     public double getValue(double x) {
         if ((x - left <= -EPS) || (x - right >= EPS))
-            throw new FunctionException(FunctionErrorCode.ARGUMENT_OUT_OF_DOMAIN);
+            throw new FunctionsException(FunctionsErrorCode.ARGUMENT_OUT_OF_DOMAIN);
         
         return (a * x + b) / (c * x + d);
     }

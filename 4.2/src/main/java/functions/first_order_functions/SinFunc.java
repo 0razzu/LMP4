@@ -1,18 +1,17 @@
-package parameterized_classes.functions;
+package functions.first_order_functions;
 
 
-import parameterized_classes.Function;
-import parameterized_classes.FunctionErrorCode;
-import parameterized_classes.FunctionException;
+import functions.FunctionsErrorCode;
+import functions.FunctionsException;
 
 import java.text.DecimalFormat;
 import java.util.Objects;
 
 import static java.lang.Math.abs;
-import static java.lang.Math.exp;
+import static java.lang.Math.sin;
 
 
-public class ExpFunc implements Function {
+public class SinFunc implements Function {
     private static final double EPS = 1E-9;
     private double a;
     private double b;
@@ -20,9 +19,9 @@ public class ExpFunc implements Function {
     private double right;
     
     
-    public ExpFunc(double a, double b, double left, double right) {
+    public SinFunc(double a, double b, double left, double right) {
         if (left - right >= EPS)
-            throw new FunctionException(FunctionErrorCode.INCORRECT_BOUNDS);
+            throw new FunctionsException(FunctionsErrorCode.INCORRECT_BOUNDS);
         
         this.a = a;
         this.b = b;
@@ -31,7 +30,7 @@ public class ExpFunc implements Function {
     }
     
     
-    public ExpFunc(double a, double b) {
+    public SinFunc(double a, double b) {
         this(a, b, -Double.MAX_VALUE, Double.MAX_VALUE);
     }
     
@@ -61,21 +60,21 @@ public class ExpFunc implements Function {
     @Override
     public double getValue(double x) {
         if ((x - left <= -EPS) || (x - right >= EPS))
-            throw new FunctionException(FunctionErrorCode.ARGUMENT_OUT_OF_DOMAIN);
+            throw new FunctionsException(FunctionsErrorCode.ARGUMENT_OUT_OF_DOMAIN);
         
-        return a * exp(x) + b;
+        return a * sin(b * x);
     }
     
     
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ExpFunc)) return false;
-        ExpFunc that = (ExpFunc) o;
+        if (!(o instanceof SinFunc)) return false;
+        SinFunc that = (SinFunc) o;
         return abs(that.left - left) < EPS &&
                 abs(that.right - right) < EPS &&
                 abs(that.a - a) < EPS &&
-                abs(that.b - b) < EPS;
+                (abs(a) < EPS || abs(that.b - b) < EPS);
     }
     
     
@@ -97,30 +96,30 @@ public class ExpFunc implements Function {
             else if (abs(a + 1) <= EPS)
                 sb.append("-");
             
-            sb.append("exp(x)");
-        }
-        
-        if (abs(b) >= EPS) {
-            if (sb.length() == 0)
-                sb.append(df.format(b));
+            sb.append("sin(");
             
-            else {
-                if (b < EPS)
-                    sb.append(" - ");
+            if (abs(b) >= EPS) {
+                if (abs(abs(b) - 1) >= EPS)
+                    sb.append(df.format(b));
                 
-                else
-                    sb.append(" + ");
+                else if (abs(b + 1) <= EPS)
+                    sb.append("-");
                 
-                sb.append(df.format(abs(b)));
+                sb.append("x");
             }
+            
+            else
+                sb.append(0);
+            
+            sb.append(")");
         }
         
-        if (sb.length() == 0)
+        else
             sb.append(0);
         
         sb.append(String.format(", x ∈ [%s; %s]", (left == -Double.MAX_VALUE)? "-∞" : df.format(left),
                 (right == Double.MAX_VALUE)? "+∞" : df.format(right)));
         
-        return sb.insert(0, "ExpFunc {").append("}").toString();
+        return sb.insert(0, "SinFunc {").append("}").toString();
     }
 }

@@ -1,4 +1,4 @@
-package parameterized_classes;
+package functions.first_order_functions;
 
 
 public interface Function {

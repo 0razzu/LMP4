@@ -1,9 +1,9 @@
-package parameterized_classes.functions;
+package functions.first_order_functions;
 
 
 import org.junit.jupiter.api.Test;
-import parameterized_classes.FunctionErrorCode;
-import parameterized_classes.FunctionException;
+import functions.FunctionsErrorCode;
+import functions.FunctionsException;
 
 import java.util.Locale;
 
@@ -33,8 +33,8 @@ public class TestExpFunc {
         try {
             ExpFunc f3 = new ExpFunc(1, 1, 1, -1);
             fail();
-        } catch (FunctionException e) {
-            assertEquals(FunctionErrorCode.INCORRECT_BOUNDS, e.getErrorCode());
+        } catch (FunctionsException e) {
+            assertEquals(FunctionsErrorCode.INCORRECT_BOUNDS, e.getErrorCode());
         }
     }
     
@@ -54,15 +54,15 @@ public class TestExpFunc {
         try {
             double y1 = f1.getValue(10.1);
             fail();
-        } catch (FunctionException e) {
-            assertEquals(FunctionErrorCode.ARGUMENT_OUT_OF_DOMAIN, e.getErrorCode());
+        } catch (FunctionsException e) {
+            assertEquals(FunctionsErrorCode.ARGUMENT_OUT_OF_DOMAIN, e.getErrorCode());
         }
         
         try {
             double y2 = f1.getValue(-20.001);
             fail();
-        } catch (FunctionException e) {
-            assertEquals(FunctionErrorCode.ARGUMENT_OUT_OF_DOMAIN, e.getErrorCode());
+        } catch (FunctionsException e) {
+            assertEquals(FunctionsErrorCode.ARGUMENT_OUT_OF_DOMAIN, e.getErrorCode());
         }
     }
     

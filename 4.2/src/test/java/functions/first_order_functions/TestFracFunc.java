@@ -1,10 +1,9 @@
-package parameterized_classes.functions;
+package functions.first_order_functions;
 
 
-import parameterized_classes.FunctionErrorCode;
-import parameterized_classes.FunctionException;
+import functions.FunctionsErrorCode;
+import functions.FunctionsException;
 import org.junit.jupiter.api.Test;
-import parameterized_classes.functions.FracFunc;
 
 import java.util.Locale;
 
@@ -34,15 +33,15 @@ public class TestFracFunc {
         try {
             FracFunc f3 = new FracFunc(1, 2, 0, 0);
             fail();
-        } catch (FunctionException e) {
-            assertEquals(FunctionErrorCode.NULL_DENOMINATOR, e.getErrorCode());
+        } catch (FunctionsException e) {
+            assertEquals(FunctionsErrorCode.NULL_DENOMINATOR, e.getErrorCode());
         }
         
         try {
             FracFunc f4 = new FracFunc(1, 1, 1, 1, 1, 0);
             fail();
-        } catch (FunctionException e) {
-            assertEquals(FunctionErrorCode.INCORRECT_BOUNDS, e.getErrorCode());
+        } catch (FunctionsException e) {
+            assertEquals(FunctionsErrorCode.INCORRECT_BOUNDS, e.getErrorCode());
         }
     }
     
@@ -63,15 +62,15 @@ public class TestFracFunc {
         try {
             double y1 = f1.getValue(10.1);
             fail();
-        } catch (FunctionException e) {
-            assertEquals(FunctionErrorCode.ARGUMENT_OUT_OF_DOMAIN, e.getErrorCode());
+        } catch (FunctionsException e) {
+            assertEquals(FunctionsErrorCode.ARGUMENT_OUT_OF_DOMAIN, e.getErrorCode());
         }
     
         try {
             double y2 = f1.getValue(-20.001);
             fail();
-        } catch (FunctionException e) {
-            assertEquals(FunctionErrorCode.ARGUMENT_OUT_OF_DOMAIN, e.getErrorCode());
+        } catch (FunctionsException e) {
+            assertEquals(FunctionsErrorCode.ARGUMENT_OUT_OF_DOMAIN, e.getErrorCode());
         }
     }
     

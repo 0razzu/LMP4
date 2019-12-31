@@ -1,9 +1,8 @@
-package parameterized_classes.functions;
+package functions.first_order_functions;
 
 
-import parameterized_classes.FunctionErrorCode;
-import parameterized_classes.FunctionException;
-import parameterized_classes.functions.LinearFunc;
+import functions.FunctionsErrorCode;
+import functions.FunctionsException;
 import org.junit.jupiter.api.Test;
 
 import java.util.Locale;
@@ -34,8 +33,8 @@ public class TestLinearFunc {
         try {
             LinearFunc f3 = new LinearFunc(1, 1, 1, -1);
             fail();
-        } catch (FunctionException e) {
-            assertEquals(FunctionErrorCode.INCORRECT_BOUNDS, e.getErrorCode());
+        } catch (FunctionsException e) {
+            assertEquals(FunctionsErrorCode.INCORRECT_BOUNDS, e.getErrorCode());
         }
     }
     
@@ -55,15 +54,15 @@ public class TestLinearFunc {
         try {
             double y1 = f1.getValue(10.1);
             fail();
-        } catch (FunctionException e) {
-            assertEquals(FunctionErrorCode.ARGUMENT_OUT_OF_DOMAIN, e.getErrorCode());
+        } catch (FunctionsException e) {
+            assertEquals(FunctionsErrorCode.ARGUMENT_OUT_OF_DOMAIN, e.getErrorCode());
         }
         
         try {
             double y2 = f1.getValue(-20.001);
             fail();
-        } catch (FunctionException e) {
-            assertEquals(FunctionErrorCode.ARGUMENT_OUT_OF_DOMAIN, e.getErrorCode());
+        } catch (FunctionsException e) {
+            assertEquals(FunctionsErrorCode.ARGUMENT_OUT_OF_DOMAIN, e.getErrorCode());
         }
     }
     
