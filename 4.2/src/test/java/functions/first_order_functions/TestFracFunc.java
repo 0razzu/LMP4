@@ -41,7 +41,7 @@ public class TestFracFunc {
             FracFunc f4 = new FracFunc(1, 1, 1, 1, 1, 0);
             fail();
         } catch (FunctionsException e) {
-            assertEquals(FunctionsErrorCode.INCORRECT_BOUNDS, e.getErrorCode());
+            assertEquals(FunctionsErrorCode.LEFT_GT_RIGHT, e.getErrorCode());
         }
     }
     

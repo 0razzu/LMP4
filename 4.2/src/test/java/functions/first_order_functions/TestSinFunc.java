@@ -35,7 +35,7 @@ public class TestSinFunc {
             SinFunc f3 = new SinFunc(1, 1, 1, -1);
             fail();
         } catch (FunctionsException e) {
-            assertEquals(FunctionsErrorCode.INCORRECT_BOUNDS, e.getErrorCode());
+            assertEquals(FunctionsErrorCode.LEFT_GT_RIGHT, e.getErrorCode());
         }
     }
     

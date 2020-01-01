@@ -19,7 +19,7 @@ public class SumOfValues<F extends Function> implements Functional<F> {
     
     public SumOfValues(double left, double right) {
         if (left - right >= EPS)
-            throw new FunctionsException(FunctionsErrorCode.INCORRECT_BOUNDS);
+            throw new FunctionsException(FunctionsErrorCode.LEFT_GT_RIGHT);
         
         this.left = left;
         this.right = right;

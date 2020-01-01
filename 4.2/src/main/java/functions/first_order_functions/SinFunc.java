@@ -21,7 +21,7 @@ public class SinFunc implements Function {
     
     public SinFunc(double a, double b, double left, double right) {
         if (left - right >= EPS)
-            throw new FunctionsException(FunctionsErrorCode.INCORRECT_BOUNDS);
+            throw new FunctionsException(FunctionsErrorCode.LEFT_GT_RIGHT);
         
         this.a = a;
         this.b = b;

@@ -6,6 +6,8 @@ import functions.FunctionsException;
 import functions.first_order_functions.*;
 import org.junit.jupiter.api.Test;
 
+import java.util.Locale;
+
 import static java.lang.Math.sqrt;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,7 +29,7 @@ public class TestSumOfValues {
             Functional<LinearFunc> f2 = new SumOfValues<>(10, -10);
             fail();
         } catch (FunctionsException e) {
-            assertEquals(FunctionsErrorCode.INCORRECT_BOUNDS, e.getErrorCode());
+            assertEquals(FunctionsErrorCode.LEFT_GT_RIGHT, e.getErrorCode());
         }
     }
     
@@ -72,6 +74,8 @@ public class TestSumOfValues {
     
     @Test
     void testSumofValuesToString() {
+        Locale.setDefault(Locale.ENGLISH);
+        
         Functional<FracFunc> f1 = new SumOfValues<>(1, 2);
         Functional<ExpFunc> f2 = new SumOfValues<>(-1.95, 3.123456789);
         

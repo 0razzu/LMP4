@@ -22,7 +22,7 @@ public class FracFunc implements Function {
     
     public FracFunc(double a, double b, double c, double d, double left, double right) {
         if (left - right >= EPS)
-            throw new FunctionsException(FunctionsErrorCode.INCORRECT_BOUNDS);
+            throw new FunctionsException(FunctionsErrorCode.LEFT_GT_RIGHT);
         
         if ((abs(c) < EPS) && (abs(d) < EPS))
             throw new FunctionsException(FunctionsErrorCode.NULL_DENOMINATOR);

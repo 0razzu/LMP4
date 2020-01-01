@@ -34,7 +34,7 @@ public class TestLinearFunc {
             LinearFunc f3 = new LinearFunc(1, 1, 1, -1);
             fail();
         } catch (FunctionsException e) {
-            assertEquals(FunctionsErrorCode.INCORRECT_BOUNDS, e.getErrorCode());
+            assertEquals(FunctionsErrorCode.LEFT_GT_RIGHT, e.getErrorCode());
         }
     }
     
