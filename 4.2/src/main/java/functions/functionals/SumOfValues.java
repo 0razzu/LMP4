@@ -48,6 +48,7 @@ public class SumOfValues<F extends Function> implements Functional<F> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof SumOfValues)) return false;
+        System.out.println(this.getClass().getGenericSuperclass() + " " + o.getClass().getGenericSuperclass());
         SumOfValues<?> that = (SumOfValues<?>) o;
         return abs(that.left - left) < EPS &&
                 abs(that.right - right) < EPS;
