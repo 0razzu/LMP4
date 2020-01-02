@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>0razzu.4.4.1.2</groupId>
+    <groupId>0razzu</groupId>
     <artifactId>SquareTrinomialMaxRootExtractor</artifactId>
     <version>2.0</version>
     <packaging>jar</packaging>
@@ -15,8 +15,8 @@
 
     <repositories>
         <repository>
-            <id>mvn_jar_packages-mvn-repo</id>
-            <url>https://raw.github.com/0razzu/mvn_jar_packages/mvn-repo/</url>
+            <id>mvn_repo-master</id>
+            <url>https://raw.github.com/0razzu/mvn_repo/master/SquareTrinomial/</url>
             <snapshots>
                 <enabled>true</enabled>
                 <updatePolicy>always</updatePolicy>
