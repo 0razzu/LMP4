@@ -55,7 +55,7 @@
                 <artifactId>site-maven-plugin</artifactId>
                 <version>${github.maven-plugin}</version>
                 <configuration>
-                    <message>Maven artifacts for ${project.version}</message>
+                    <message>Maven artifacts for ${project.artifactId} ${project.version}</message>
                     <noJekyll>true</noJekyll>
                     <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
                     <branch>refs/heads/mvn-repo</branch>
