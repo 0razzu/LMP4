@@ -1,3 +1,6 @@
+package Comparators;
+
+
 import products.Product;
 
 import java.util.Comparator;

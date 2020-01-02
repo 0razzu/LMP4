@@ -1,7 +1,9 @@
+package Comparators;
+
+
+import Comparators.ProductsComparator;
 import org.junit.jupiter.api.Test;
 import products.*;
-
-import java.util.WeakHashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -123,7 +125,8 @@ public class TestProductsComparator {
                 () -> assertTrue(comparator.compare(p1, p4) > 0),
                 () -> assertEquals(comparator.compare(p1, p4), -comparator.compare(p4, p1)),
                 () -> assertTrue(comparator.compare(p1, p5) < 0),
-                () -> assertEquals(comparator.compare(p1, p5), -comparator.compare(p5, p1))
+                () -> assertEquals(comparator.compare(p1, p5), -comparator.compare(p5, p1)),
+                () -> assertThrows(NullPointerException.class, () -> {int res = comparator.compare(null, p1);})
         );
     }
 }
