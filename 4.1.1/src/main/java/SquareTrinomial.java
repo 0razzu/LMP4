@@ -47,13 +47,11 @@ public class SquareTrinomial {
         else {
             d = Math.sqrt(d);
                 
-            double res1 = (-d - b) / (2*a);
-                
             if (d < EPS)
-                return new double[]{res1};
+                return new double[]{(-d - b) / (2*a)};
                 
             else
-                return new double[]{res1, (d - b) / (2*a)};
+                return new double[]{(-d - b) / (2*a), (d - b) / (2*a)};
         }
     }
     
