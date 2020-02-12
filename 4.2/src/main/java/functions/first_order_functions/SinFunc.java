@@ -96,22 +96,20 @@ public class SinFunc implements Function {
             else if (abs(a + 1) <= EPS)
                 sb.append("-");
             
-            sb.append("sin(");
-            
             if (abs(b) >= EPS) {
+                sb.append("sin(");
+                
                 if (abs(abs(b) - 1) >= EPS)
                     sb.append(df.format(b));
                 
                 else if (abs(b + 1) <= EPS)
                     sb.append("-");
                 
-                sb.append("x");
+                sb.append("x)");
             }
             
             else
-                sb.append(0);
-            
-            sb.append(")");
+                sb.replace(0, sb.length(), "0");
         }
         
         else

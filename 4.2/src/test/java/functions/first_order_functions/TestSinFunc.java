@@ -105,8 +105,8 @@ public class TestSinFunc {
         
         assertAll(
                 () -> assertEquals("SinFunc {0, x ∈ [-1; 1]}", f1.toString()),
-                () -> assertEquals("SinFunc {-sin(0), x ∈ [-1; 1]}", f2.toString()),
-                () -> assertEquals("SinFunc {5sin(0), x ∈ [-1; 1]}", f3.toString()),
+                () -> assertEquals("SinFunc {0, x ∈ [-1; 1]}", f2.toString()),
+                () -> assertEquals("SinFunc {0, x ∈ [-1; 1]}", f3.toString()),
                 () -> assertEquals("SinFunc {0, x ∈ [-2.8; +∞]}", f4.toString()),
                 () -> assertEquals("SinFunc {0, x ∈ [-1; 2]}", f5.toString()),
                 () -> assertEquals("SinFunc {sin(2x), x ∈ [-∞; +∞]}", f6.toString()),
