@@ -1,5 +1,4 @@
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.Objects;
 
 
@@ -46,12 +45,12 @@ public class SquareTrinomial {
         
         else {
             d = Math.sqrt(d);
-                
+            
             if (d < EPS)
-                return new double[]{(-d - b) / (2*a)};
-                
+                return new double[]{(-d - b) / (2 * a)};
+            
             else
-                return new double[]{(-d - b) / (2*a), (d - b) / (2*a)};
+                return new double[]{(-d - b) / (2 * a), (d - b) / (2 * a)};
         }
     }
     
@@ -83,10 +82,10 @@ public class SquareTrinomial {
             else if (sb.length() != 0) {
                 sb.append(" + ");
             }
-        
+            
             if ((power == 0) || (Math.abs(coefficient - 1) >= EPS))
                 sb.append(new DecimalFormat("0.######").format(coefficient));
-        
+            
             if (power > 0)
                 sb.append("x");
             
