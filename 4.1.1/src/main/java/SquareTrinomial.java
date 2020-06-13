@@ -40,7 +40,7 @@ public class SquareTrinomial {
     public double[] getRealRoots() {
         double d = b * b - 4 * a * c;
         
-        if (d < -EPS)
+        if (d < 0)
             return new double[0];
         
         else {
