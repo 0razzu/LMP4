@@ -72,7 +72,7 @@ public class SquareTrinomial {
     }
     
     
-    private String monomial(StringBuilder sb, double coefficient, int power) {
+    private void monomial(StringBuilder sb, double coefficient, int power) {
         if (Math.abs(coefficient) >= EPS) {
             if (coefficient <= -EPS) {
                 sb.append(sb.length() == 0? "-" : " - ");
@@ -92,8 +92,6 @@ public class SquareTrinomial {
             if (power > 1)
                 sb.append("^").append(power);
         }
-        
-        return sb.toString();
     }
     
     
